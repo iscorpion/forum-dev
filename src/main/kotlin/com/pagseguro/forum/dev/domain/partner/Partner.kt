@@ -16,7 +16,7 @@ class Partner(
     @Column(name = "idt_partner")
     val id: Long? = null,
 
-    @Column(name = "cod_customer", insertable = false, updatable = false)
+    @Column(name = "cod_customer")
     val codCustomer: String,
 
     @Column(name = "name")
