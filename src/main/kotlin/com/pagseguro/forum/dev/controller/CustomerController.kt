@@ -6,6 +6,7 @@ import com.pagseguro.forum.dev.domain.customer.CustomerService
 import com.pagseguro.forum.dev.domain.partner.PartnerCreate
 import com.pagseguro.forum.dev.domain.partner.PartnerInfo
 import com.pagseguro.forum.dev.domain.partner.PartnerInfoResponse
+import com.pagseguro.forum.dev.domain.partner.PartnerService
 import com.pagseguro.forum.dev.utils.toPercentage
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -17,10 +18,13 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/customers")
-class CustomerController(val service: CustomerService) {
+class CustomerController(
+    val customerService: CustomerService,
+    val partnerService: PartnerService
+) {
     @GetMapping("/{codCustomer}")
     fun getCustomer(@PathVariable codCustomer: String): ResponseEntity<CustomerInfoResponse> {
-        val customer = service.getCustomer(codCustomer)
+        val customer = customerService.getCustomer(codCustomer)
         return ResponseEntity.ok(
             CustomerInfoResponse(codCustomer = customer.codCustomer,
                 name = customer.name,
@@ -31,20 +35,20 @@ class CustomerController(val service: CustomerService) {
 
     @PostMapping
     fun createCustomer(@RequestBody request: CustomerCreateRequest): ResponseEntity<Unit> {
-        service.createCustomer(request)
+        customerService.createCustomer(request)
         return ResponseEntity.noContent().build()
     }
 
     @PostMapping("/partners")
     fun createPartner(@RequestBody request: PartnerCreate): ResponseEntity<Unit> {
-        service.createPartner(request)
+        partnerService.createPartner(request)
         return ResponseEntity.noContent().build()
     }
 
     @GetMapping("/{codCustomer}/partners")
     fun getPartners(@PathVariable codCustomer: String): ResponseEntity<PartnerInfoResponse> {
-        val customer = service.getCustomer(codCustomer)
-        val partners = service.getPartners(customer)
+        val customer = customerService.getCustomer(codCustomer)
+        val partners = partnerService.getPartners(customer)
         val response = PartnerInfoResponse(codCustomer = customer.codCustomer,
             companyName = customer.name,
             companyEmail = customer.email.orEmpty(),
