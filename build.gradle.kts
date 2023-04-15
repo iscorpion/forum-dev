@@ -27,6 +27,9 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-ui:1.6.5")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation ("org.mockito.kotlin:mockito-kotlin:4.1.0")
+	testImplementation("org.assertj:assertj-core:3.24.2")
+
 }
 
 tasks.withType<KotlinCompile> {
