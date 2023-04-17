@@ -10,3 +10,4 @@ Com base na implementação, iremos explorar a implementação de testes unitár
 Para facilitar a comparação, o código será dividido em diferentes branches de acordo com as tecnologias abordadas:
 - main: Apenas o código base com suas regras de negócio.
 - mockito-mockMvc: Testes implementados utilizando os frameworks Mockito e MockMVC.
+- mockk-restAssured: Testes utilizando MockK e Rest Assured.
