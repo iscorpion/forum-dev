@@ -8,4 +8,5 @@ O projeto em questão implementa um simples cadastro e listagem de clientes, dif
 Com base na implementação, iremos explorar a implementação de testes unitários e de componente com diferentes frameworks.
 
 Para facilitar a comparação, o código será dividido em diferentes branches de acordo com as tecnologias abordadas:
-- main: Apenas o código base com suas regras de negócio
+- main: Apenas o código base com suas regras de negócio.
+- mockito-mockMvc: Testes implementados utilizando os frameworks Mockito e MockMVC.
